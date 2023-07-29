@@ -1,4 +1,6 @@
-package Enum;
+package Enum.Task1;
+
+import Enum.Task1.Seasons;
 
 import java.util.Scanner;
 

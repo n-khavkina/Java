@@ -1,4 +1,4 @@
-package Enum;
+package Enum.Task1;
 
 public enum Seasons {
     SPRING, SUMMER, AUTUMN, WINTER;
