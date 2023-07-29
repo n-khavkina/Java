@@ -16,15 +16,4 @@ public class NegativeTextAnalyzer extends KeywordAnalyzer {
     Label getLabel() {
         return label;
     }
-
-    @Override
-    public Label processText(String text) {
-        Label result = Label.OK;
-        for (String s : getKeywords()) {
-            if (text.contains(s)) {
-                return getLabel();
-            }
-        }
-        return result;
-    }
 }
