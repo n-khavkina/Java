@@ -1,7 +1,7 @@
 package Enum.Task2;
 
 public class Potato extends Food {
-    String name = "Картофель";
+    private String name = "Картофель";
 
     @Override
     public FoodType getFoodType() {
