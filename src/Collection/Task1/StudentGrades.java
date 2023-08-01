@@ -12,6 +12,7 @@ public class StudentGrades {
         for (int i = 0; i < 20; i++) {
             grades.add(random.nextInt(1, 6));
         }
+
         System.out.println("Список до удаления неудовлетворительных оценок: " + grades);
         Iterator<Integer> iterator = grades.iterator();
         while (iterator.hasNext()) {
@@ -19,16 +20,17 @@ public class StudentGrades {
                 iterator.remove();
             }
         }
+
         Iterator<Integer> iterator2 = grades.iterator();
         int max = grades.get(0);
         while (iterator2.hasNext()) {
-            if (iterator2.next() > max) {
-                max = iterator2.next();
+            int nextElement = iterator2.next();
+            if (nextElement > max) {
+                max = nextElement;
             }
         }
+
         System.out.println("Список после удаления неудовлетворительных оценок: " + grades);
         System.out.println("Самая высокая оценка: " + max);
-
-
     }
 }
