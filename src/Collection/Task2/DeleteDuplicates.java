@@ -7,8 +7,8 @@ public class DeleteDuplicates {
         List<Integer> list = new LinkedList<>();
         Random random = new Random();
 
-        for (int i = 0; i < 20; i++) {
-            list.add(random.nextInt(1, 11));
+        for (int i = 0; i < 6; i++) {
+            list.add(random.nextInt(1, 3));
         }
 
         System.out.println("LinkedList до удаления повторяющихся чисел: " + list);
