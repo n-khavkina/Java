@@ -14,26 +14,26 @@ public class Manager {
         addProduct(new Product("Шоколадка", 100), 3);
         printBasket();
         System.out.println("--------------------------------------------");
-        sortBasket(basket.products, "name");
+        sortBasket(basket.getProducts(), "name");
         System.out.println("--------------------------------------------");
-        sortBasket(basket.products, "price");
+        sortBasket(basket.getProducts(), "price");
         System.out.println("--------------------------------------------");
-        sortBasket(basket.products, "name and price");
+        sortBasket(basket.getProducts(), "name and price");
     }
 
     public static void addProduct(Product product, int count) {
         int totalCount = 0;
-        if (basket.products.containsKey(product)) {
-            totalCount = basket.products.get(product) + count;
+        if (basket.getProducts().containsKey(product)) {
+            totalCount = basket.getProducts().get(product) + count;
         } else {
             totalCount = count;
         }
-        basket.products.put(product, totalCount);
+        basket.getProducts().put(product, totalCount);
         totalPrice += (product.getPrice() * count);
     }
 
     public static void printBasket() {
-        if (basket.products.isEmpty()) {
+        if (basket.getProducts().isEmpty()) {
             System.out.println("Корзина пустая");
         } else {
             System.out.println("Список товаров в корзине:");
@@ -73,7 +73,7 @@ public class Manager {
                 }
                 break;
             default:
-                System.out.println("Ошибка");
+                System.out.println("Ошибка!");
         }
     }
 }

@@ -3,7 +3,7 @@ package OnlineStore;
 import java.util.HashMap;
 
 public class Basket {
-    HashMap <Product, Integer> products;
+    private HashMap<Product, Integer> products;
 
     public Basket() {
         this.products = new HashMap<>();
