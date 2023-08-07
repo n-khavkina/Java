@@ -9,14 +9,14 @@ public class Test {
         String name = scanner.nextLine();
         try {
             validateName(name);
-        } catch (InvalidName e) {
+        } catch (InvalidNameException e) {
             System.out.println(e.getMessage());
         }
     }
 
-    public static void validateName(String name) throws InvalidName {
+    public static void validateName(String name) throws InvalidNameException {
         if (!name.matches("[A-ZА-Я][a-zа-я]+")) {
-            throw new InvalidName("Введено неверное имя!");
+            throw new InvalidNameException("Введено неверное имя!");
         }
     }
 }
