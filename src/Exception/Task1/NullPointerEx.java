@@ -1,4 +1,4 @@
-package Exception;
+package Exception.Task1;
 
 public class NullPointerEx {
     private static String string;
