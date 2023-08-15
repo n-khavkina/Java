@@ -1,9 +1,6 @@
 package Files.Task2;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -19,13 +16,12 @@ public class Task2 {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        try (FileReader reader = new FileReader(file)) {
-            int res = reader.read();
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String result = reader.readLine();
             StringBuilder stringBuilder = new StringBuilder("");
-            while (res != -1) {
-                Character character = (char) res;
-                stringBuilder.append(character);
-                res = reader.read();
+            while (result != null) {
+                stringBuilder.append(result);
+                result = reader.readLine();
             }
             System.out.println(stringBuilder);
             Pattern pattern1 = Pattern.compile(regex1);
