@@ -30,7 +30,7 @@ public class Task2 {
             while (matcher1.find()) {
                 wordCount++;
             }
-            System.out.println("Количество слов: " + wordCount);
+            System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ СЃР»РѕРІ: " + wordCount);
 
             int countOfPunctuationMarks = 0;
             Pattern pattern2 = Pattern.compile(regex2);
@@ -39,7 +39,7 @@ public class Task2 {
             while (matcher2.find()) {
                 countOfPunctuationMarks++;
             }
-            System.out.println("Количество знаков препинания: " + countOfPunctuationMarks);
+            System.out.println("РљРѕР»РёС‡РµСЃС‚РІРѕ Р·РЅР°РєРѕРІ РїСЂРµРїРёРЅР°РЅРёСЏ: " + countOfPunctuationMarks);
         } catch (IOException e) {
             e.printStackTrace();
         }
