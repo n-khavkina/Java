@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 public class Test {
     private static LocalDate currentDate = LocalDate.now();
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         System.out.println("Введите номер месяца текущего года:");
