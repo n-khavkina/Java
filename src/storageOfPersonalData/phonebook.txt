@@ -1,0 +1,2 @@
+User{name='Ivan', createdDate=2023-08-17, number=123}
+User{name='Petr', createdDate=2023-08-17, number=345}
