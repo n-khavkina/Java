@@ -3,7 +3,7 @@ package threads.task1;
 import java.util.Random;
 
 public class ThreadExample extends Thread {
-    Random random = new Random();
+    private Random random = new Random();
 
     public ThreadExample(String name) {
         super(name);
