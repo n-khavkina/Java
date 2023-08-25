@@ -13,13 +13,9 @@ public class Producer extends Thread {
     }
 
     @Override
-    public void run() {
-        while (true) {
-            if (Store.totalCountOfProcessedItems <= 5) {
-                store.put(random.nextInt(1, 5));
-            } else {
-                return;
-            }
+    public synchronized void run() {
+        while (Store.totalCountOfProcessedItems <= 10_000) {
+            store.put(random.nextInt(1, 5));
         }
     }
 }

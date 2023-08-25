@@ -8,7 +8,7 @@ public class Store {
     static int totalCountOfProcessedItems;
 
     public synchronized void put(int element) {
-        while (queue.size() >= 3) {
+        while (queue.size() >= 100) {
             try {
                 wait();
             } catch (InterruptedException e) {
@@ -21,17 +21,19 @@ public class Store {
     }
 
     public synchronized void get() {
-        while (queue.isEmpty()) {
+        if (queue.isEmpty() || queue.size() <= 80) {
             try {
                 wait();
             } catch (InterruptedException e) {
                 throw new RuntimeException();
             }
+            notify();
+        } else {
+            totalCountOfProcessedItems++;
+            System.out.println(Thread.currentThread().getName() + " забрал " + queue.poll() + " count=" +
+                    totalCountOfProcessedItems + "\n" + queue);
+            notify();
         }
-        totalCountOfProcessedItems++;
-        System.out.println(Thread.currentThread().getName() + " забрал " + queue.poll() + " count=" +
-                totalCountOfProcessedItems + "\n" + queue);
-        notify();
     }
 
 }
