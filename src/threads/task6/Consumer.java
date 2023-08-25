@@ -2,7 +2,7 @@ package threads.task6;
 
 public class Consumer extends Thread {
     private String name;
-    Store store;
+    private final Store store;
 
     public Consumer(Store store, String name) {
         super(name);
@@ -12,8 +12,13 @@ public class Consumer extends Thread {
     @Override
     public void run() {
         synchronized (store) {
-            while (Store.totalCountOfProcessedItems <= 10_00000)
-                store.get();
+            while (true) {
+                if (Store.getTotalCountOfProcessedItems() >= Store.MAX_TOTAL_COUNT_OF_PROCESSED_ITEMS) {
+                    return;
+                } else {
+                    store.get();
+                }
+            }
         }
     }
 }

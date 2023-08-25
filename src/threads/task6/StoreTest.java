@@ -15,6 +15,5 @@ public class StoreTest {
         consumer2.start();
 
 
-
     }
 }
