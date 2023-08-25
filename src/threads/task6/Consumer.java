@@ -10,9 +10,11 @@ public class Consumer extends Thread {
     }
 
     @Override
-    public synchronized void run() {
-        while (Store.totalCountOfProcessedItems <= 10_000)
-            store.get();
+    public void run() {
+        synchronized (store) {
+            while (Store.totalCountOfProcessedItems <= 10_00000)
+                store.get();
+        }
     }
 }
 
