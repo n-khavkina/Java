@@ -1,11 +1,5 @@
 package threads.callable.task2;
 
-import threads.callable.task1.CallableFileGenerator;
-
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
