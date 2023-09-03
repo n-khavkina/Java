@@ -6,8 +6,8 @@ import java.util.Random;
 import java.util.concurrent.*;
 
 public class CallableNumberGenerator implements Callable {
-    Random random = new Random();
-    List<Integer> list = new ArrayList<>();
+    private Random random = new Random();
+    private List<Integer> list = new ArrayList<>();
     @Override
     public List<Integer> call() throws Exception {
         System.out.println(Thread.currentThread().getName());

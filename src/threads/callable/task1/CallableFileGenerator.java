@@ -8,12 +8,10 @@ import java.util.*;
 import java.util.concurrent.*;
 
 public class CallableFileGenerator implements Callable {
-    static int number = 1;
-
+    private static int number = 1;
+    private File file;
     @Override
     public List<String> call() throws Exception {
-        File file;
-
         file = new File("src/threads/callable/task1/test" + number + ".txt");
         file.createNewFile();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
