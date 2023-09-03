@@ -2,7 +2,6 @@ package threads.callable.task3;
 
 import java.io.*;
 import java.time.LocalTime;
-import java.util.List;
 import java.util.concurrent.*;
 
 public class Stopwatch implements Callable {
@@ -36,7 +35,7 @@ class Main {
         ExecutorService pool = Executors.newFixedThreadPool(3);
         for (int i = 0; i < 10; i++) {
             Stopwatch stopwatch = new Stopwatch();
-            Future<List<Integer>> future = pool.submit(stopwatch);
+            Future<String> future = pool.submit(stopwatch);
             System.out.println(future.get());
         }
         pool.shutdown();
