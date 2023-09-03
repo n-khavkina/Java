@@ -1,15 +1,18 @@
-package threads.callable.task2;
+package threads.callable.task3;
+
+import threads.callable.task2.CallableNumberGenerator;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import java.util.concurrent.*;
 
-public class CallableNumberGenerator implements Callable {
-    Random random = new Random();
-    List<Integer> list = new ArrayList<>();
+public class Stopwatch implements Callable {
+
     @Override
     public List<Integer> call() throws Exception {
+        Random random = new Random();
+        List<Integer> list = new ArrayList<>();
         System.out.println(Thread.currentThread().getName());
         for (int i = 0; i < 10; i++) {
             list.add(random.nextInt(1, 100));
@@ -30,4 +33,5 @@ class Main {
         pool.shutdown();
     }
 }
+
 
