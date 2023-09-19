@@ -12,10 +12,10 @@ public class CallableFileGenerator implements Callable {
     private File file;
     @Override
     public String call() throws Exception {
-        file = new File("Java/src/threads/callable/task1/test" + number + ".txt");
+        file = new File("Java/src/threads/callable/task1/test" + number++ + ".txt");
         file.createNewFile();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
-            bw.write("java_" + number++);
+            bw.write("java_" + number);
             System.out.println(Thread.currentThread().getName());
         } catch (IOException e) {
             e.printStackTrace();
