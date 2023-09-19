@@ -2,6 +2,8 @@ package threads.callable.task3;
 
 import java.io.*;
 import java.time.LocalTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.concurrent.*;
 
 public class Stopwatch implements Callable {
@@ -10,7 +12,7 @@ public class Stopwatch implements Callable {
 
     @Override
     public synchronized String call() throws Exception {
-        file = new File("src/threads/callable/task3/test.txt");
+        file = new File("Java/src/threads/callable/task3/test.txt");
         file.createNewFile();
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file, true))) {
             bw.write("Hello World " + localTime + "\n");
@@ -33,9 +35,13 @@ public class Stopwatch implements Callable {
 class Main {
     public static void main(String[] args) throws ExecutionException, InterruptedException {
         ExecutorService pool = Executors.newFixedThreadPool(3);
+        Set<Future<String>> set = new HashSet<>();
         for (int i = 0; i < 10; i++) {
             Stopwatch stopwatch = new Stopwatch();
             Future<String> future = pool.submit(stopwatch);
+            set.add(future);
+        }
+        for (Future<String> future : set){
             System.out.println(future.get());
         }
         pool.shutdown();
