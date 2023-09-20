@@ -1,11 +1,13 @@
 package threads.task7;
 
+import java.time.Duration;
 import java.time.LocalDateTime;
 
 public class Event {
     private String name;
     private LocalDateTime date;
     private String descriprion;
+    private Duration durationOfEvent = Duration.ofSeconds(5);
     private boolean isActive = false;
 
     public Event(String name, LocalDateTime date, String descriprion) {
@@ -44,6 +46,14 @@ public class Event {
 
     public boolean isActive() {
         return isActive;
+    }
+
+    public Duration getDurationOfEvent() {
+        return durationOfEvent;
+    }
+
+    public void setDurationOfEvent(Duration durationOfEvent) {
+        this.durationOfEvent = durationOfEvent;
     }
 
     @Override

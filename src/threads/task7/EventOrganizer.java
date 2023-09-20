@@ -10,7 +10,7 @@ public class EventOrganizer implements Callable {
     private static Map<String, Event> map = new HashMap<>();
     Mode mode;
     Event event;
-    LocalDateTime currentDate = LocalDateTime.now();
+
     public EventOrganizer(Mode mode, Event event) {
         this.mode = mode;
         this.event = event;
@@ -18,63 +18,71 @@ public class EventOrganizer implements Callable {
 
     @Override
     public String call() throws Exception {
+        StringBuilder result = new StringBuilder("");
         switch (mode) {
             case MODE1:
                 while (Duration.between(LocalDateTime.now(), event.getDate()).toHours() <= 1 &&
                         Duration.between(LocalDateTime.now(), event.getDate()).toSeconds() >= 0) {
                     long d = Duration.between(LocalDateTime.now(), event.getDate()).toSeconds();
-                    System.out.println("Количество секунд до старта " + event.getName() + ": " + d);
-                    Thread.sleep(1000);
+                    result.append("\n" + "Количество секунд до старта " + event.getName() + ": " + d);
+                    TimeUnit.SECONDS.sleep(1);
+                    if (d == 0) {
+                        event.setActive(true);
+                    }
                 }
                 break;
             case MODE2:
                 while (!event.isActive()) {
                     TimeUnit.SECONDS.sleep(1);
-                    compareDates(currentDate, event.getDate());
                 }
-                    System.out.println(event.getName() + " началось");
+                result.append(event.getName() + " началось");
                 break;
             case MODE3:
                 while (!event.isActive()) {
                     TimeUnit.SECONDS.sleep(1);
-                    compareDates(currentDate, event.getDate());
                 }
                 while (event.isActive()) {
-                    System.out.println("Мероприятие уже началось! Не пропустите" + event.getName() + "!");
-                    TimeUnit.MINUTES.sleep(1);
+                    if (LocalDateTime.now().isAfter(event.getDate().plus(event.getDurationOfEvent()))) {
+                        result.append(event.getName() + " закончилось(");
+                        break;
+                    }
+                    result.append("\n" + "Событие уже началось! Не пропустите " + event.getName() + "!");
+                    TimeUnit.SECONDS.sleep(1);
                 }
         }
-        return Thread.currentThread().getName();
-    }
-
-    public void compareDates(LocalDateTime currentDate, LocalDateTime dayOfEvent){
-        if (currentDate.equals(dayOfEvent)) {
-            event.setActive(true);
-        }else {
-            event.setActive(false);
-        }
+        return Thread.currentThread().getName() + " " + result;
     }
 
     public static void main(String[] args) throws ExecutionException, InterruptedException {
-        ExecutorService pool = Executors.newFixedThreadPool(3);
-        Event event1 = new Event("Мероприятие1", LocalDateTime.now().plusSeconds(3), "aaa");
-        Event event2 = new Event("Мероприятие2", LocalDateTime.
-                of(2023, 9, 20, 17, 20), "aaa2");
-        Event event3 = new Event("Мероприятие3", LocalDateTime.
-                of(2023, 9, 20, 17, 10), "aaa3");
+        ExecutorService pool = Executors.newFixedThreadPool(6);
+        Event event1 = new Event("Событие1", LocalDateTime.now().plusSeconds(3), "Описание1");
+        Event event2 = new Event("Событие2", LocalDateTime.now().plusSeconds(6), "Описание2");
+
         map.put(event1.getName(), event1);
         map.put(event2.getName(), event2);
-        map.put(event3.getName(), event3);
 
-        Callable<String> eventOrganizer1 = new EventOrganizer(Mode.MODE1, event1);
-        Callable<String> eventOrganizer2 = new EventOrganizer(Mode.MODE2, event1);
-        Callable<String> eventOrganizer3 = new EventOrganizer(Mode.MODE3, event1);
+        Callable<String> eventOrganizer1 = new EventOrganizer(Mode.MODE1, map.get("Событие1"));
+        Callable<String> eventOrganizer2 = new EventOrganizer(Mode.MODE2, map.get("Событие1"));
+        Callable<String> eventOrganizer3 = new EventOrganizer(Mode.MODE3, map.get("Событие1"));
+
+        Callable<String> eventOrganizer4 = new EventOrganizer(Mode.MODE1, map.get("Событие2"));
+        Callable<String> eventOrganizer5 = new EventOrganizer(Mode.MODE2, map.get("Событие2"));
+        Callable<String> eventOrganizer6 = new EventOrganizer(Mode.MODE3, map.get("Событие2"));
         Future<String> future1 = pool.submit(eventOrganizer1);
         Future<String> future2 = pool.submit(eventOrganizer2);
         Future<String> future3 = pool.submit(eventOrganizer3);
+        Future<String> future4 = pool.submit(eventOrganizer4);
+        Future<String> future5 = pool.submit(eventOrganizer5);
+        Future<String> future6 = pool.submit(eventOrganizer6);
+
         System.out.println(future1.get());
         System.out.println(future2.get());
         System.out.println(future3.get());
+
+
+        System.out.println(future4.get());
+        System.out.println(future5.get());
+        System.out.println(future6.get());
         pool.shutdown();
 
     }
