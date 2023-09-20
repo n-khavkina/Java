@@ -43,7 +43,7 @@ public class EventOrganizer implements Callable {
                 }
                 while (event.isActive()) {
                     if (LocalDateTime.now().isAfter(event.getDate().plus(event.getDurationOfEvent()))) {
-                        result.append("\n" + "event.getName() + закончилось(");
+                        result.append("\n" + event.getName() + " закончилось(");
                         break;
                     }
                     result.append("\n" + "Событие уже началось! Не пропустите " + event.getName() + "!");
