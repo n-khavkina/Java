@@ -2,18 +2,18 @@ package threads.task7;
 
 import java.time.Duration;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 public class Event {
     private String name;
     private LocalDateTime date;
-    private String descriprion;
-    private Duration durationOfEvent = Duration.ofSeconds(5);
+    private String description;
     private boolean isActive = false;
 
-    public Event(String name, LocalDateTime date, String descriprion) {
+    public Event(String name, LocalDateTime date, String description) {
         this.name = name;
         this.date = date;
-        this.descriprion = descriprion;
+        this.description = description;
     }
 
     public String getName() {
@@ -33,11 +33,11 @@ public class Event {
     }
 
     public String getDescriprion() {
-        return descriprion;
+        return description;
     }
 
     public void setDescriprion(String descriprion) {
-        this.descriprion = descriprion;
+        this.description = descriprion;
     }
 
     public void setActive(boolean active) {
@@ -48,12 +48,18 @@ public class Event {
         return isActive;
     }
 
-    public Duration getDurationOfEvent() {
-        return durationOfEvent;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Event event = (Event) o;
+        return isActive == event.isActive && Objects.equals(name, event.name) && Objects.equals(date, event.date) && Objects.equals(description, event.description);
     }
 
-    public void setDurationOfEvent(Duration durationOfEvent) {
-        this.durationOfEvent = durationOfEvent;
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, date, description, isActive);
     }
 
     @Override
@@ -61,7 +67,7 @@ public class Event {
         return "Event{" +
                 "name='" + name + '\'' +
                 ", date=" + date +
-                ", descriprion='" + descriprion + '\'' +
+                ", descriprion='" + description + '\'' +
                 ", isActive=" + isActive +
                 '}';
     }
