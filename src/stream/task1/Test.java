@@ -34,6 +34,5 @@ public class Test {
             String[] split = value.split("[\\W]+");
             return (Stream) Arrays.asList(split).stream();
         }).forEach(System.out::println);
-
     }
 }
