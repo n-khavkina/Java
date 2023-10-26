@@ -12,7 +12,8 @@ public class PredicateExample {
 class Main{
     public static void main(String[] args) {
         PredicateExample predicateExample = new PredicateExample();
-        predicateExample.stringTest("abc", s -> s!=null);
+        int i = 7;
+        predicateExample.stringTest("abc", s -> s != null);
         predicateExample.stringTest("abc", s -> !s.isEmpty());
         predicateExample.stringTest("JAVA", s -> s.matches("^[NJ]\\w*A$"));
     }
