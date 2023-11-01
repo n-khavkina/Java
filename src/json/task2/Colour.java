@@ -1,4 +1,4 @@
-package json.task2.test;
+package json.task2;
 
 public class Colour {
     private String id;

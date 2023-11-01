@@ -1,4 +1,4 @@
-package json.task2.test;
+package json.task2;
 
 import java.awt.*;
 import java.util.List;
