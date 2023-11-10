@@ -1,4 +1,4 @@
-package builder;
+package builder.task1;
 
 public class BuilderTest {
     public static void main(String[] args) {

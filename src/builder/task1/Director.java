@@ -1,6 +1,5 @@
-package builder;
+package builder.task1;
 
-import java.time.LocalDate;
 import java.util.Scanner;
 
 public class Director {

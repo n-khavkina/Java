@@ -1,12 +1,12 @@
-package builder;
+package builder.task1;
 
 import java.time.LocalDate;
 
 public class Person {
     private String name;
     private String surname;
-    private String address;
     private int yearOfBirth;
+    private String address;
 
     public Person(String name, String surname, int yearOfBirth, String address) {
         this.name = name;

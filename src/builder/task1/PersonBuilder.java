@@ -1,6 +1,4 @@
-package builder;
-
-import java.time.LocalDate;
+package builder.task1;
 
 public class PersonBuilder implements Builder {
     private String name;
