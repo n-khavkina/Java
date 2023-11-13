@@ -8,7 +8,7 @@ public class BuilderTest2 {
     public static void main(String[] args) {
         Person2 person2 = Person2.builder().
                 name("Иван")
-                        .surname("Иванов")
+                .surname("Иванов")
                 .address(
                         Address.builder()
                                 .city("Москва")
@@ -20,7 +20,7 @@ public class BuilderTest2 {
                 .birthInfo(
                         BirthInfo.builder()
                                 .birthday(LocalDate.of(1990, 1, 1))
-                                .birthtime(LocalTime.of(12,30))
+                                .birthtime(LocalTime.of(12, 30))
                                 .birthplace("Санкт-Петербург")
                                 .weight(3700.0)
                                 .height(50.0)
